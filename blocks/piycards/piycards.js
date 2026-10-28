@@ -3,12 +3,16 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
+  [...block.children].forEach((row, index) => {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+      else {
+        div.className = 'cards-card-body';
+        const target = div.firstElementChild || div;
+        target.prepend(`${index + 1} `);
+      }
     });
     ul.append(li);
   });
