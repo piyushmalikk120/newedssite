@@ -1,0 +1,232 @@
+/* Carousel Block */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Track */
+.carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Individual Slide */
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--background-color, #fff);
+  overflow: hidden;
+}
+
+@media (width >= 768px) {
+  .carousel-slide {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 380px;
+  }
+}
+
+/* Slide Image */
+.carousel-slide-image {
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: var(--light-color, #f8f8f8);
+  max-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width >= 768px) {
+  .carousel-slide-image {
+    width: 55%;
+    max-height: none;
+  }
+}
+
+.carousel-slide-image picture,
+.carousel-slide-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Slide Content */
+.carousel-slide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  background-color: var(--background-color, #fff);
+}
+
+@media (width >= 768px) {
+  .carousel-slide-content {
+    width: 45%;
+    padding: 40px 48px;
+  }
+}
+
+/* Title */
+.carousel-slide-title {
+  font-family: var(--heading-font-family, sans-serif);
+  font-size: var(--heading-font-size-l, 28px);
+  font-weight: 600;
+  color: var(--text-color, #131313);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.carousel-slide-title h1,
+.carousel-slide-title h2,
+.carousel-slide-title h3,
+.carousel-slide-title h4,
+.carousel-slide-title h5,
+.carousel-slide-title h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* Description */
+.carousel-slide-description {
+  font-family: var(--body-font-family, sans-serif);
+  font-size: var(--body-font-size-s, 16px);
+  color: var(--dark-color, #505050);
+  line-height: 1.6;
+}
+
+.carousel-slide-description p {
+  margin: 0 0 0.5em;
+}
+
+.carousel-slide-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Prev / Next Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  color: var(--text-color, #131313);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus-visible {
+  background-color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
+  outline: none;
+}
+
+.carousel-btn:focus-visible {
+  outline: 2px solid var(--link-color, #3b63fb);
+  outline-offset: 2px;
+}
+
+.carousel-btn-prev {
+  left: 10px;
+}
+
+.carousel-btn-next {
+  right: 10px;
+}
+
+@media (width >= 768px) {
+  .carousel-btn-prev {
+    left: 16px;
+  }
+
+  .carousel-btn-next {
+    right: 16px;
+  }
+}
+
+/* Bubble / Dot Indicators */
+.carousel-bubbles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0 8px;
+}
+
+.carousel-bubble {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--text-color, #131313);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.25s, transform 0.25s, border-color 0.25s;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-bubble.active {
+  background-color: var(--text-color, #131313);
+  transform: scale(1.3);
+  border-color: var(--text-color, #131313);
+}
+
+.carousel-bubble:hover:not(.active) {
+  background-color: var(--dark-color, #505050);
+  border-color: var(--dark-color, #505050);
+  transform: scale(1.15);
+}
+
+.carousel-bubble:focus-visible {
+  outline: 2px solid var(--link-color, #3b63fb);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition: none;
+  }
+
+  .carousel-bubble {
+    transition: none;
+  }
+
+  .carousel-btn {
+    transition: none;
+  }
+}
